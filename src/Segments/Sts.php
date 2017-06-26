@@ -9,16 +9,16 @@ class Sts extends AbstractSegment
     protected static $validationBlueprint = [
         'STS' => ['STS' => 'M|a|3'],
         'C601' => ['9015' => 'M|an|3'],
-        'C555' => ['4405' => null],
-        'C556' => ['9013' => 'M|an|3'],
+        'C555' => ['4405' => 'D|an|3'],
+        'C556' => ['9013' => 'D|an|3'],
     ];
 
-    public static function fromAttributes($category, $reason)
+    public static function fromAttributes($category, $reason, $status = null)
     {
         return new static([
             'STS' => ['STS' => 'STS'],
             'C601' => ['9015' => $category],
-            'C555' => ['4405' => null],
+            'C555' => ['4405' => $status],
             'C556' => ['9013' => $reason],
         ]);
     }
@@ -26,6 +26,11 @@ class Sts extends AbstractSegment
     public function category()
     {
         return $this->elements['C601']['9015'];
+    }
+
+    public function status()
+    {
+        return $this->elements['C555']['4405'];
     }
 
     public function reason()
