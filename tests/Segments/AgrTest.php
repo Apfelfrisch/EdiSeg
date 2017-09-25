@@ -21,7 +21,7 @@ class AgrTest extends TestCase
     /** @test */
     public function it_can_set_and_fetch_basic_informations()
     {
-        $seg = Agr::fromAttributes('ABC', 'CBA', new Delimiter);
+        $seg = Agr::fromAttributes('ABC', 'CBA');
 
         $this->assertEquals('AGR', $seg->name());
         $this->assertEquals('ABC', $seg->qualifier());
