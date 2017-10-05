@@ -22,7 +22,10 @@ class Uci extends AbstractSegment
         $receiver,
         $receiverCode,
         $statusCode,
-        $errorCode = null
+        $errorCode = null,
+        $serviceSegement = null,
+        $segmentPosition = null,
+        $elementPosition = null
     )
     {
         return new static([
@@ -31,7 +34,9 @@ class Uci extends AbstractSegment
             'S002' => ['0004' => $sender, '0007' => $senderCode],
             'S003' => ['0010' => $receiver, '0007' => $receiverCode],
             '0083' => ['0083' => $statusCode],
-            '0085' => ['0085' => $errorCode]
+            '0085' => ['0085' => $errorCode],
+            '0013' => ['0013' => $serviceSegement],
+            'S011' => ['0098' => $segmentPosition, '0104' => $elementPosition],
         ]);
     }
 
@@ -68,5 +73,20 @@ class Uci extends AbstractSegment
     public function errorCode()
     {
         return $this->elements['0085']['0085'];
+    }
+
+    public function serviceSegement()
+    {
+        return $this->elements['0013']['0013'];
+    }
+
+    public function segmentPosition()
+    {
+        return $this->elements['S011']['0098'];
+    }
+
+    public function elementPosition()
+    {
+        return $this->elements['S011']['0104'];
     }
 }
