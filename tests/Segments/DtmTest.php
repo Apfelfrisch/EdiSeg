@@ -71,13 +71,26 @@ class DtmTest extends TestCase
     }
 
     /** @test */
+    public function it_can_set_and_fetch_date_with_code_602()
+    {
+        $code = 602;
+        $date = new DateTime;
+        $checkDateformat = 'Y-01-01 00:00:00';
+
+        $seg = $this->getDtm($date, $code);
+
+        $this->assertEquals( $date->format($checkDateformat), $seg->date()->format('Y-m-d H:i:s'));
+    }
+
+    /** @test */
     public function it_can_set_and_fetch_date_with_code_610()
     {
         $code = 610;
         $date = new DateTime;
-        $checkDateformat = 'Y-m-d H:00:00';
+        $checkDateformat = 'Y-m-01 00:00:00';
 
         $seg = $this->getDtm($date, $code);
+
         $this->assertEquals( $date->format($checkDateformat), $seg->date()->format('Y-m-d H:i:s'));
     }
 

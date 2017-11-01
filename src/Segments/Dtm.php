@@ -35,7 +35,7 @@ class Dtm extends AbstractSegment
             case 602:
                 return $date->format('Y');
             case 610:
-                return $date->format('YmdH');
+                return $date->format('Ym');
             case 802:
                 return $date->format('m');
         }
@@ -64,7 +64,9 @@ class Dtm extends AbstractSegment
                 $hour = 0;
                 return DateTime::createFromFormat('YmdH', $string.$month.$day.$hour);
             case 610:
-                return DateTime::createFromFormat('YmdH', $string);
+                $day = '01';
+                $hour = 0;
+                return DateTime::createFromFormat('YmdH', $string.$day.$hour);
             case 802:
                 $day = '01';
                 $hour = 0;
