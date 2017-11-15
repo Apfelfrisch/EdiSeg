@@ -75,7 +75,15 @@ class Ucm extends AbstractSegment
         return $this->elements['0083']['0083'];
     }
 
+    /*
+     * @Deprecated
+     */
     public function error()
+    {
+        return $this->errorCode();
+    }
+
+    public function errorCode()
     {
         return $this->elements['0085']['0085'];
     }
