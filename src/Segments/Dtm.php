@@ -13,7 +13,7 @@ class Dtm extends AbstractSegment
         'C507' => ['2005' => 'M|an|3', '2380' => 'M|an|35', '2379' => 'M|an|3'],
     ];
 
-    public static function fromAttributes($qualifier, DateTime $date, $code)
+    public static function fromAttributes($qualifier, $date, $code)
     {
         return new static([
             'DTM' => ['DTM' => 'DTM'],
@@ -38,6 +38,8 @@ class Dtm extends AbstractSegment
                 return $date->format('Ym');
             case 802:
                 return $date->format('m');
+            case 'Z01':
+                return $date;
         }
 
         throw SegValidationException::forKeyValue('DTM', $code, "Timecode unknown.");
@@ -71,6 +73,8 @@ class Dtm extends AbstractSegment
                 $day = '01';
                 $hour = 0;
                 return DateTime::createFromFormat('mdH', $string);
+            case 'Z01':
+                return $string;
         }
 
         throw SegValidationException::forKeyValue('DTM', $code, "Timecode unknown.");
