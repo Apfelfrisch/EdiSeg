@@ -13,7 +13,7 @@ class MoaTest extends TestCase
     {
         $segName = 'MOA';
         $qualifier = '380';
-        $amount = '1000';
+        $amount = 10.50;
 
         $seg = Moa::fromAttributes($qualifier, $amount);
 
@@ -30,5 +30,31 @@ class MoaTest extends TestCase
 
         $seg = Moa::fromAttributes($qualifier, $amount);
         $this->assertEquals(2, strlen(substr(strrchr($seg->amount(), "."), 1)));
+    }
+
+    /** @test */
+    public function it_set_the_decimal_char_to_define_one_from_una()
+    {
+        $segName = 'MOA';
+        $decimal = ',';
+        $qualifier = '380';
+        $amount = 10.0;
+
+        Moa::setBuildDelimiter(new Delimiter(':', '+', $decimal, '?', ' ', '\''));
+        $seg = Moa::fromAttributes($qualifier, $amount);
+        $this->assertEquals("MOA+380:10,00'", (string)$seg);
+    }
+
+    /** @test */
+    public function it_gets_always_a_vaild_decimal_number_despite_wich_one_is_defined_in_una()
+    {
+        $segName = 'MOA';
+        $decimal = ',';
+        $qualifier = '380';
+        $amount = '10.00';
+
+        Moa::setBuildDelimiter(new Delimiter(':', '+', $decimal, '?', ' ', '\''));
+        $seg = Moa::fromSegLine("MOA+380:10" . $decimal . "00");
+        $this->assertEquals($amount, $seg->amount());
     }
 }

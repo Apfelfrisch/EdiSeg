@@ -6,6 +6,8 @@ use Proengeno\Edifact\Templates\AbstractSegment;
 
 class Moa extends AbstractSegment
 {
+    use Traits\DecimalAmountTrait;
+
     protected static $validationBlueprint = [
         'MOA' => ['MOA' => 'M|a|3'],
         'C516' => ['5025' => 'M|an|3', '5004' => 'M|n|35'],
@@ -26,6 +28,6 @@ class Moa extends AbstractSegment
 
     public function amount()
     {
-        return $this->elements['C516']['5004'];
+        return $this->replaceToValidDecimal($this->elements['C516']['5004']);
     }
 }

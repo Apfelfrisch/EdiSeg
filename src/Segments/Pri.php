@@ -6,6 +6,8 @@ use Proengeno\Edifact\Templates\AbstractSegment;
 
 class Pri extends AbstractSegment
 {
+    use Traits\DecimalAmountTrait;
+
     protected static $validationBlueprint = [
         'PRI' => ['PRI' => 'M|a|3'],
         'C509' => ['5125' => 'M|n|3', '5118' => 'M|n|15', '5375' => null, '5387' => null, '5284' => null, '6411' => 'D|an|8'],
@@ -26,7 +28,7 @@ class Pri extends AbstractSegment
 
     public function amount()
     {
-        return $this->elements['C509']['5118'];
+        return $this->replaceToValidDecimal($this->elements['C509']['5118']);
     }
 
     public function unitCode()
