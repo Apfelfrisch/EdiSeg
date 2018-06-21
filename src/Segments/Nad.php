@@ -96,10 +96,10 @@ class Nad extends AbstractSegment
         );
     }
 
-    public static function fromAdress($qualifier, $street, $number, $city, $zip, $district = null)
+    public static function fromAdress($qualifier, $street, $number, $city, $zip, $district = null, $country = 'DE')
     {
         return static::fromAttributes(
-            $qualifier, null, null, null, null, null, null, null, null, $street, $number, $district, $city, $zip
+            $qualifier, null, null, null, null, null, null, null, null, $street, $number, $district, $city, $zip, $country
         );
     }
 
