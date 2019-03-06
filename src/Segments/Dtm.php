@@ -15,13 +15,37 @@ class Dtm extends AbstractSegment
 
     public static function fromAttributes($qualifier, $date, $code)
     {
+        if ($date instanceof DateTime) {
+            $date = static::serializeDateTime($date, $code);
+        }
+
         return new static([
             'DTM' => ['DTM' => 'DTM'],
-            'C507' => ['2005' => $qualifier, '2380' => static::formatDate($date, $code), '2379' => $code],
+            'C507' => ['2005' => $qualifier, '2380' => $date, '2379' => $code],
         ]);
     }
 
-    public static function formatDate($date, $code)
+    public function qualifier()
+    {
+        return $this->elements['C507']['2005'];
+    }
+
+    public function date()
+    {
+        return $this->buildDate($this->rawDate(), $this->code());
+    }
+
+    public function rawDate()
+    {
+        return $this->elements['C507']['2380'];
+    }
+
+    public function code()
+    {
+        return $this->elements['C507']['2379'];
+    }
+
+    private static function serializeDateTime($date, $code)
     {
         switch ($code) {
             case 102:
@@ -36,16 +60,12 @@ class Dtm extends AbstractSegment
                 return $date->format('Y');
             case 610:
                 return $date->format('Ym');
-            case 802:
-                return $date->format('m');
-            case 'Z01':
-                return $date;
         }
 
-        throw SegValidationException::forKeyValue('DTM', $code, "Timecode unknown.");
+        throw SegValidationException::forKeyValue('DTM', $code, "Timecode doesnt Support DateTime or is unknown.");
     }
 
-    public static function dateFromString($string, $code)
+    private function buildDate($string, $code)
     {
         switch ($code) {
             case 102:
@@ -70,33 +90,10 @@ class Dtm extends AbstractSegment
                 $hour = 0;
                 return DateTime::createFromFormat('YmdH', $string.$day.$hour);
             case 802:
-                $day = '01';
-                $hour = 0;
-                return DateTime::createFromFormat('mdH', $string);
             case 'Z01':
                 return $string;
         }
 
         throw SegValidationException::forKeyValue('DTM', $code, "Timecode unknown.");
-    }
-
-    public function qualifier()
-    {
-        return $this->elements['C507']['2005'];
-    }
-
-    public function date()
-    {
-        return static::dateFromString($this->rawDate(), $this->code());
-    }
-
-    public function rawDate()
-    {
-        return $this->elements['C507']['2380'];
-    }
-
-    public function code()
-    {
-        return $this->elements['C507']['2379'];
     }
 }

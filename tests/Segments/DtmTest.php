@@ -95,6 +95,19 @@ class DtmTest extends TestCase
     }
 
     /** @test */
+    public function it_can_set_and_fetch_date_with_code_802()
+    {
+        $code = 802;
+        $date = '12';
+        $checkDateformat = 'Y-m-01 00:00:00';
+
+        $seg = Dtm::fromAttributes('672', $date, $code);
+
+        $this->assertEquals($date, $seg->date());
+        echo "\n\n" . $seg . "\n\n";
+    }
+
+    /** @test */
     public function it_throw_an_exception_if_the_date_code_is_unknown()
     {
         $code = 999;
