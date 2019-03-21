@@ -104,7 +104,6 @@ class DtmTest extends TestCase
         $seg = Dtm::fromAttributes('672', $date, $code);
 
         $this->assertEquals($date, $seg->date());
-        echo "\n\n" . $seg . "\n\n";
     }
 
     /** @test */
