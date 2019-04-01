@@ -61,6 +61,13 @@ class Nad extends AbstractSegment
         ]);
     }
 
+    public static function fromQualifier($qualifier)
+    {
+        return static::fromAttributes(
+            $qualifier, null, null, null, null, null, null, null, null, null, null, null, null, null, null
+        );
+    }
+
     public static function fromMpCode($qualifier, $id, $idCode)
     {
         return static::fromAttributes(
