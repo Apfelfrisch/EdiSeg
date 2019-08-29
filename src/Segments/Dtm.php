@@ -96,4 +96,13 @@ class Dtm extends AbstractSegment
 
         throw SegValidationException::forKeyValue('DTM', $code, "Timecode unknown.");
     }
+
+    protected function getGetterMethods()
+    {
+        return [
+            'qualifier',
+            'rawDate',
+            'code',
+        ];
+    }
 }
