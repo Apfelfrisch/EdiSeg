@@ -14,13 +14,13 @@ class Ftx extends AbstractSegment
         'C108' => ['4440:1' => 'O|an|512', '4440:2' => 'O|an|512', '4440:3' => 'O|an|512', '4440:4' => 'O|an|512', '4440:5' => 'O|an|512'],
     ];
 
-    public static function fromAttributes($qualifier, $message)
+    public static function fromAttributes($qualifier, $message, $code = null)
     {
         return new static([
             'FTX' => ['FTX' => 'FTX'],
             '4451' => ['4451' => $qualifier],
             '4453' => [null],
-            'C107' => ['4441' => null],
+            'C107' => ['4441' => $code],
             'C108' => [
                 '4440:1' => substr($message, 0, 512),
                 '4440:2' => substr($message, 512, 512),
