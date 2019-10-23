@@ -19,7 +19,7 @@ class Nad extends AbstractSegment
         '3164' => ['3164' => 'D|an|35'],
         'C819' => ['3229' => null],
         '3251' => ['3251' => 'D|an|17'],
-        '3207' => ['3251' => 'D|an|3'],
+        '3207' => ['3207' => 'D|an|3'],
     ];
 
     public static function fromAttributes(
