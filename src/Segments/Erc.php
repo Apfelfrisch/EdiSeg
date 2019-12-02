@@ -8,7 +8,7 @@ class Erc extends AbstractSegment
 {
     protected static $validationBlueprint = [
         'ERC' => ['ERC' => 'M|a|3'],
-        'C901' => ['9321' => 'M|n|8'],
+        'C901' => ['9321' => 'M|an|8'],
     ];
 
     public static function fromAttributes($error)
