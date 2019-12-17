@@ -10,7 +10,7 @@ class NadTest extends TestCase
 {
     private $nadAttributes;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
