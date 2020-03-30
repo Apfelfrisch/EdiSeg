@@ -8,7 +8,7 @@ class Cav extends AbstractSegment
 {
     protected static $validationBlueprint = [
         'CAV' => ['CAV' => 'M|a|3'],
-        'C889' => ['7111' => 'O|an|3', '1131' => null, '3055' => 'O|an|3', '7110:1' => 'O|an|35', '7110:2' => 'O|an|35'],
+        'C889' => ['7111' => 'O|an|3', '1131' => 'O|an|17', '3055' => 'O|an|3', '7110:1' => 'O|an|35', '7110:2' => 'O|an|35'],
     ];
 
     public static function fromAttributes($code, $responsCode = null, $valueOne = null, $valueTwo = null)
@@ -22,6 +22,11 @@ class Cav extends AbstractSegment
     public function code()
     {
         return $this->elements['C889']['7111'];
+    }
+
+    public function codeList()
+    {
+        return $this->elements['C889']['1131'];
     }
 
     public function responsCode()
