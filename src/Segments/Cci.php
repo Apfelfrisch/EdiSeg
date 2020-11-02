@@ -10,7 +10,7 @@ class Cci extends AbstractSegment
         'CCI' => ['CCI' => 'M|a|3'],
         '7059' => ['7059' => 'O|an|3'],
         'C502' => ['6313' => null],
-        'C240' => ['7037' => 'M|an|17', '1131' => null, '3055' => null, '7036' => 'O|an|35'],
+        'C240' => ['7037' => 'O|an|17', '1131' => null, '3055' => null, '7036' => 'O|an|35'],
     ];
 
     public static function fromAttributes($type, $code, $mark = null)

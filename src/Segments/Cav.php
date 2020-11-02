@@ -11,11 +11,11 @@ class Cav extends AbstractSegment
         'C889' => ['7111' => 'O|an|3', '1131' => 'O|an|17', '3055' => 'O|an|3', '7110:1' => 'O|an|35', '7110:2' => 'O|an|35'],
     ];
 
-    public static function fromAttributes($code, $responsCode = null, $valueOne = null, $valueTwo = null)
+    public static function fromAttributes($code, $responsCode = null, $valueOne = null, $valueTwo = null, $codeList = null)
     {
         return new static([
             'CAV' => ['CAV' => 'CAV'],
-            'C889' => ['7111' => $code, '1131' => null, '3055' => $responsCode, '7110:1' => $valueOne, '7110:2' => $valueTwo],
+            'C889' => ['7111' => $code, '1131' => $codeList, '3055' => $responsCode, '7110:1' => $valueOne, '7110:2' => $valueTwo],
         ]);
     }
 
