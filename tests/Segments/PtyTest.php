@@ -19,5 +19,6 @@ class PtyTest extends TestCase
 
         $this->assertEquals($qualifier, $seg->qualifier());
         $this->assertEquals($priority, $seg->priority());
+        $this->assertEquals("PTY+Z01+:::234567'", (string)$seg);
     }
 }

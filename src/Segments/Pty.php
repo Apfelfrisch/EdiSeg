@@ -8,7 +8,7 @@ class Pty extends AbstractSegment
 {
     protected static $validationBlueprint = [
         'PTY' => ['PTY' => 'M|a|3'],
-        '4035' => ['4035' => 'M|n|3'],
+        '4035' => ['4035' => 'M|an|3'],
         'C585' => ['4037' => null, '1131' => null, '3055' => null, '4036' => 'M|n|35'],
     ];
 
@@ -17,7 +17,7 @@ class Pty extends AbstractSegment
         return new static([
             'PTY' => ['PTY' => 'PTY'],
             '4035' => ['4035' => $qualifier],
-            'C585' => ['4036' => $priority],
+            'C585' => ['4037' => null, '1131' => null, '3055' => null, '4036' => $priority],
         ]);
     }
 
