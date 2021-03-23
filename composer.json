@@ -1,11 +1,11 @@
 {
     "name": "proengeno/ediseg",
     "require": { 
-        "php": "^7.2",
+        "php": "^7.4|^8.0",
         "proengeno/edifact": "dev-master"
     },
     "require-dev": {
-        "phpunit/phpunit": "^8"
+        "phpunit/phpunit": "^9.3"
     },
     "autoload": {
         "psr-4": {
