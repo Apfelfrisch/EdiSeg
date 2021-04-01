@@ -20,4 +20,20 @@ class StsTest extends TestCase
         $this->assertEquals($category, $seg->category());
         $this->assertEquals($reason, $seg->reason());
     }
+
+    /** @test */
+    public function it_can_set_and_fetch_codelist_answers()
+    {
+        $segName = 'STS';
+        $category = 'E01';
+        $answer = 'E15';
+        $code = 'G_0008';
+
+        $seg = Sts::fromAttributes($category, $answer, $code);
+
+        $this->assertEquals($category, $seg->category());
+        $this->assertEquals($answer, $seg->reason());
+        $this->assertEquals($code, $seg->code());
+        $this->assertEquals("STS+E01++E15:G_0008'", (string)$seg);
+    }
 }
