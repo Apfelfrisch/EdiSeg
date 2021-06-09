@@ -36,6 +36,11 @@ class Ftx extends AbstractSegment
         return $this->elements['4451']['4451'];
     }
 
+    public function code()
+    {
+        return $this->elements['C107']['4441'];
+    }
+
     public function message()
     {
         $message = null;

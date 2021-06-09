@@ -12,6 +12,7 @@ class FtxTest extends TestCase
     public function it_supports_maximal_2560_charecters()
     {
         $segName = 'FTX';
+        $code = 'Z01';
         $qualifier = 'ACB';
         $maxcount = 2560;
         $stringcount = $maxcount + 1;
@@ -21,9 +22,10 @@ class FtxTest extends TestCase
         while ($downCounter --> 0) {
             $message .= "a";
         }
-        $seg = Ftx::fromAttributes($qualifier, $message);
+        $seg = Ftx::fromAttributes($qualifier, $message, $code);
 
         $this->assertEquals($segName, $seg->name());
+        $this->assertEquals($code, $seg->code());
         $this->assertEquals($qualifier, $seg->qualifier());
         $this->assertEquals($maxcount, strlen($seg->message()));
     }
