@@ -24,27 +24,28 @@ class Nad extends AbstractSegment
 
     public static function fromAttributes(
         $qualifier,
-        $id,
-        $idCode,
-        $lastName,
-        $firstName,
-        $additionalName1,
-        $additionalName2,
-        $title,
-        $partnerType,
-        $street,
-        $number,
-        $district,
-        $city,
-        $zip,
-        $country = 'DE'
+        $id = null,
+        $idCode = null,
+        $lastName = null,
+        $firstName = null,
+        $additionalName1 = null,
+        $additionalName2 = null,
+        $title = null,
+        $partnerType = null,
+        $street = null,
+        $number = null,
+        $district = null,
+        $city = null,
+        $zip = null,
+        $country = 'DE',
+        $additionalInformation = null,
     )
     {
         return new static([
             'NAD' => ['NAD' => 'NAD'],
             '3035' => ['3035' => $qualifier],
             'C082' => ['3039' => $id, '1131' => null, '3055' => $idCode],
-            'C058' => ['3124' => null],
+            'C058' => ['3124' => $additionalInformation],
             'C080' => [
                 '3036:1' => $lastName,
                 '3036:2' => $firstName,
@@ -75,17 +76,56 @@ class Nad extends AbstractSegment
         );
     }
 
-    public static function fromPersonAdress($qualifier, $lastName, $firstName, $street, $number, $city, $zip, $title = null, $district = null)
-    {
+    public static function fromPersonAdress(
+        $qualifier,
+        $lastName,
+        $firstName,
+        $street,
+        $number,
+        $city,
+        $zip,
+        $title = null,
+        $district = null,
+        $additionalInformation = null,
+    ) {
         return static::fromAttributes(
-            $qualifier, null, null, $lastName, $firstName, null, null, $title, self::PERSON_ADRESS, $street, $number, $district, $city, $zip
+            qualifier: $qualifier,
+            lastName: $lastName,
+            firstName: $firstName,
+            title: $title,
+            partnerType: self::PERSON_ADRESS,
+            street: $street,
+            number: $number,
+            district: $district,
+            city: $city,
+            zip: $zip,
+            additionalInformation: $additionalInformation,
         );
     }
 
-    public static function fromCompanyAdress($qualifier, $company, $street, $number, $city, $zip, $title = null, $district = null)
-    {
+    public static function fromCompanyAdress(
+        $qualifier,
+        $company,
+        $street,
+        $number,
+        $city,
+        $zip,
+        $title = null,
+        $district = null,
+        $additionalInformation = null,
+    ) {
         return static::fromAttributes(
-            $qualifier, null, null, substr($company, 0, 70), substr($company, 70), null, null, $title, self::COMPANY_ADRESS, $street, $number, $district, $city, $zip
+            qualifier: $qualifier,
+            lastName: substr($company, 0, 70),
+            firstName: substr($company, 70),
+            title: $title,
+            partnerType: self::COMPANY_ADRESS,
+            street: $street,
+            number: $number,
+            district: $district,
+            city: $city,
+            zip: $zip,
+            additionalInformation: $additionalInformation
         );
     }
 
@@ -103,10 +143,25 @@ class Nad extends AbstractSegment
         );
     }
 
-    public static function fromAdress($qualifier, $street, $number, $city, $zip, $district = null, $country = 'DE')
-    {
+    public static function fromAdress(
+        $qualifier,
+        $street,
+        $number,
+        $city,
+        $zip,
+        $district = null,
+        $country = 'DE',
+        $additionalInformation = null,
+    ) {
         return static::fromAttributes(
-            $qualifier, null, null, null, null, null, null, null, null, $street, $number, $district, $city, $zip, $country
+            qualifier: $qualifier,
+            street: $street,
+            number: $number,
+            city: $city,
+            zip: $zip,
+            country: $country,
+            district: $district,
+            additionalInformation: $additionalInformation
         );
     }
 

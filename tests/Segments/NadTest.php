@@ -21,7 +21,7 @@ class NadTest extends TestCase
             'idCode' => 'CBA',
             'lastName' => 'Refle',
             'firstName' => 'Nils',
-            'company' => 'Proengeno Gmbh und Co. Kg und so weiter und sofort',
+            'company' => 'Proengeno Gmbh und Co. Kg und so weiter und sofort ist ziemlich lang aber muss so sein',
             'additionalName1' => 'von Hoäcker',
             'additionalName2' => 'zu Konradsen',
             'title' => 'Dr.',
@@ -30,7 +30,8 @@ class NadTest extends TestCase
             'number' => '3a',
             'district' => 'JemgumOrt',
             'city' => 'Jemgum',
-            'zip' => '26844'
+            'zip' => '26844',
+            'additionalInformation' => 'Zusatz Infos'
         ];
     }
 
@@ -140,6 +141,29 @@ class NadTest extends TestCase
         extract($this->nadAttributes);
 
         $seg = Nad::fromAdress($qualifier, $street, $number, $city, $zip, $district);
+
+        $this->assertEquals($segName, $seg->name());
+        $this->assertEquals($street, $seg->street());
+        $this->assertEquals($number, $seg->number());
+        $this->assertEquals($zip, $seg->zip());
+        $this->assertEquals($city, $seg->city());
+        $this->assertEquals($district, $seg->district());
+    }
+
+    /** @test */
+    public function it_can_set_the_adress_data_with_additional_informations()
+    {
+        extract($this->nadAttributes);
+
+        $seg = Nad::fromAttributes(
+            qualifier: $qualifier,
+            street: $street,
+            number: $number,
+            city: $city,
+            zip: $zip,
+            district: $district,
+            additionalInformation: $additionalInformation,
+        );
 
         $this->assertEquals($segName, $seg->name());
         $this->assertEquals($street, $seg->street());
