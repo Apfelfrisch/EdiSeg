@@ -46,7 +46,7 @@ class Una extends AbstractSegment
 
     public function __toString()
     {
-        return $this->cache['segLine'] = implode('', $this->elements['UNA']) . "'";
+        return $this->segLine = implode('', $this->elements['UNA']) . $this->getDelimiter()->getSegment();
     }
 
     protected static function mapToBlueprint($segLine)
