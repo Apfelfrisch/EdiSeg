@@ -1,7 +1,3 @@
-# edi@energy
+Oudated.
 
-![Build Status](https://travis-ci.org/Apfelfrisch/EDI-Energy.svg?branch=master)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Apfelfrisch/EDI-Energy/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Apfelfrisch/EDI-Energy/?branch=master)
-[![Code Coverage](https://scrutinizer-ci.com/g/Apfelfrisch/EDI-Energy/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/Apfelfrisch/EDI-Energy/?branch=master)
-
-Segment Classes for Apfelfrisch/Edifact.
+If you want Segments for (https://github.com/Apfelfrisch/Edifact) see (https://github.com/Apfelfrisch/ediseg-generator) for autogeneration.
